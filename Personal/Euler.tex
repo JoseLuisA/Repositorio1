@@ -1,0 +1,179 @@
+\documentclass[twocolumn]{article}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+
+\begin{document}
+\title{M\'etodos num\'ericos (m\'etodo de Euler)}
+\date{Junio 14, 2018}
+\maketitle
+\newline 
+\textbf{Usando la recta tangente}
+\newline
+Suponemos que el problema con valores iniciales \newline
+$y=f(x,y),y(x_0)=y$
+\newline tiene una soluci\'on. Una manera de aproximarse a esta soluci\'on es emplear rectas tangentes.Cuando $x$ est\'a cerca del punto evaluado, los puntos en la curva soluci\'on est\'an cerca de la recta tangente (el elemento lineal). La recta con esa pendiente se llama linealizaci\'on de $y(x)$ que se puede utilizar para aproximar los valores dentro de una pequeña vecindad de $x.$
+
+\bigskip
+Para generalizar el procedimiento anterior, usamos la linealizaci\'on de una soluci\'on inc\'ognita $y(x)$ de (1) en $x = x_0$:
+\newline
+\centerline{$L(x) = y_0 + f(x_0,y_0)(x - x_0).$}\newline
+La gr\'afica de esta linealizaci\'on es una recta tangente a la gr\'afica de $y = y(x)$. Ahora hacemos que $h$ sea un incremento positivo del eje $x$. Entonces sustituyendo $x$ por $ x_1 = x_0 + h$ en la ecuaci\'on obtenemos $L(x_1) = y_0 +f(x_0,y_0)(x_0 + h - x_0) $   o   $ y_1 = y_0 +hf(x_1,y_1)$. Por supuesto la precisi\'on de la aproximaci\'on depende fuertemente del incremento de $h$. \newline Normalmente debemos elegir este tama\~no de paso para que sea "razonablemente pequeño".
+Ahora repetimos el proceso usando una "segunda recta tangente" en $(x_1,y_1)$ y resulta $y(x_2) = y(x_0 + 2h) = y(x_1 + h) \approx y_2 = y_1 + hf(x_1,y_1).$
+\newline Si continuamos de esta manera vemos que $y_n$ se puede definir recursivamente mediante la f\'ormula general \newline
+\centerline{$y_{n+1} = y_n + hf(x_n,y_n).$} \newline
+A este procedimiento de uso sucesivo de las "rectas tangentes" se conoce como m\'etodo de Euler.
+
+\newline
+\vspace{30}
+
+\textbf{1.}$y'=2x-3y+1, y(1)=5; y(1.2)$
+\newline Con $h=0.1$
+\newline\hspace{4cm}$y_1= 5+(0.1)(2*1-3*5+1)=3.8$
+\newline\hspace{4cm}$y_2=3.8+(0.1)(2(1.1)-3(3.8)+1)=2.98$
+\newline\hspace{4cm}$y_3=2.98+(0.1)(2(1.2)-3(2.98)+1)=2.42$
+\newline Con  $h=0.05$
+\newline\hspace{4cm}$y_1=5+(0.05)(2*1-3*5+1)=4.4$
+\newline\hspace{4cm}$y_2=4.4+(0.05)(2*1.05-3*4.4+1)=3.895$
+\newline\hspace{4cm}$y_3=3.895+(0.05)(2*1.1-3*3.895+1)=3.47$
+\newline\hspace{4cm}$y_4=3.47+(0.05)(2*1.15-3*3.47+1)=3.1151$
+\newline\hspace{4cm}$y_5=3.1151+(0.05)(2*1.2-3*3.1151+1)=2.8178$
+
+\bigskip
+\textbf{2.}$y'=x+y^2, y(0)=0; y(0.2)$
+\newline Con $h=0.1$
+\newline\hspace{4cm}$y_1=0+(0.1)(0+0)=0$
+\newline\hspace{4cm}$y_2=0+(0.1)(0.1+0)=0.01$
+\newline\hspace{4cm}$y_3=0.01+(0.1)(0.2+0.01^2)$
+\newline Con $h=0.05$
+\newline\hspace{4cm}$y_1=0+(0.05)(0+0)=0$
+\newline\hspace{4cm}$y_2=0+(0.05)(0.05+0)=0.0025$
+\newline\hspace{4cm}$y_3=0.0025+(0.05)(0.1+0.0025^2)=0.0075$
+\newline\hspace{4cm}$y_4=0.0075+(0.05)(0.15+0.0075^2)=0.015$
+\newline\hspace{4cm}$y_5=0.015+(0.05)(0.2+0.015^2)=0.025$
+\newline\newline \bigskip
+
+\begin{table*}
+\textbf{3.}\large{$y'=y, y(0)=1; y(1.0)$}
+\newline \large{Con $h=0.1$}
+\begin{tabular}{*{5}{c}}
+x_n & y_n & Valor real & Error absoluto & \% Error relativo \\
+\hline
+
+0.000000	&1.000000	&1.000000	&0.000000	&0.000000\\
+0.100000	&1.100000	&1.000000	&0.100000	&10.000000\\
+0.200000	&1.210000	&1.105171	&0.104829	&9.485328\\
+0.300000	&1.331000	&1.221403	&0.109597	&8.973063\\
+0.400000	&1.464100	&1.349859	&0.114241	&8.463196\\
+0.500000	&1.610510	&1.491825	&0.118685	&7.955714\\
+0.600000	&1.771561	&1.648721	&0.122840	&7.450606\\
+0.700000	&1.948717	&1.822119	&0.126598	&6.947862\\
+0.800000	&2.143589	&2.013753	&0.129836	&6.447470\\
+0.900000	&2.357948	&2.225541	&0.132407	&5.949419\\
+1.000000	&2.593742	&2.459603	&0.134139	&5.453699\\
+1.100000	&2.853117	&2.718282	&0.134835	&4.960298\\
+
+\end{tabular}
+\end{table*}
+
+\bigskip\newline\newline
+\begin{table*}
+\large{Con $h=0.05$}
+\begin{tabular}{*{5}{c}}
+x_n & y_n & Valor real & Error absoluto & \% Error relativo \\
+\hline
+0.000000	&1.000000	&1.000000	&0.000000	&0.000000\\
+0.050000	&1.050000	&1.000000	&0.050000	&5.000000\\
+0.100000	&1.102500	&1.051271	&0.051229	&4.873044\\
+0.150000	&1.157625	&1.105171	&0.052454	&4.746242\\
+0.200000	&1.215506	&1.161834	&0.053672	&4.619592\\
+0.250000	&1.276282	&1.221403	&0.054879	&4.493096\\
+0.300000	&1.340096	&1.284025	&0.056070	&4.366753\\
+0.350000	&1.407100	&1.349859	&0.057242	&4.240563\\
+0.400000	&1.477455	&1.419068	&0.058388	&4.114525\\
+0.450000	&1.551328	&1.491825	&0.059504	&3.988640\\
+0.500000	&1.628895	&1.568312	&0.060582	&3.862907\\
+0.550000	&1.710339	&1.648721	&0.061618	&3.737326\\
+0.600000	&1.795856	&1.733253	&0.062603	&3.611897\\
+0.650000	&1.885649	&1.822119	&0.063530	&3.486619\\
+0.700000	&1.979932	&1.915541	&0.064391	&3.361493\\
+0.750000	&2.078928	&2.013753	&0.065175	&3.236518\\
+0.800000	&2.182875	&2.117000	&0.065875	&3.111694\\
+0.850000	&2.292018	&2.225541	&0.066477	&2.987022\\
+0.900000	&2.406619	&2.339647	&0.066972	&2.862500\\
+0.950000	&2.526950	&2.459603	&0.067347	&2.738128\\
+1.000000	&2.653298	&2.585710	&0.067588	&2.613907\\
+
+\end{tabular}
+\end{table*}
+\newline
+\begin{table*}
+\textbf{4.}\large{$y'=2xy, y(1)=1; y(1.5)$}
+\newline \large{Con $h=0.1$}
+\begin{tabular}{*{5}{c}}
+x_n & y_n & Valor real & Error absoluto & \% Error relativo \\
+\hline
+1.000000	&1.000000	&1.000000	&0.000000	&0.000000\\
+1.100000	&1.200000	&1.000000	&0.200000	&20.000000\\
+1.200000	&1.464000	&1.233678	&0.230322	&18.669534\\
+1.300000	&1.815360	&1.552707	&0.262653	&16.915796\\
+1.400000	&2.287354	&1.993716	&0.293638	&14.728183\\
+1.500000	&2.927813	&2.611696	&0.316116	&12.103862\\
+
+\end{tabular}
+\end{table*}
+\vspace{1}
+\newline
+\begin{table*}
+\large{Con $h=0.05$}
+\begin{tabular}{*{5}{c}}
+x_n & y_n & Valor real & Error absoluto & \% Error relativo \\
+\hline
+
+1.000000	&1.000000	&1.000000	&0.000000	&0.000000\\
+1.050000	&1.100000	&1.000000	&0.100000	&10.000000\\
+1.100000	&1.215500	&1.107937	&0.107563	&9.708374\\
+1.150000	&1.349205	&1.233678	&0.115527	&9.364432\\
+1.200000	&1.504364	&1.380575	&0.123789	&8.966459\\
+1.250000	&1.684887	&1.552707	&0.132180	&8.512872\\
+1.300000	&1.895498	&1.755055	&0.140443	&8.002226\\
+1.350000	&2.141913	&1.993716	&0.148197	&7.433223\\
+1.400000	&2.431071	&2.276183	&0.154888	&6.804721\\
+1.450000	&2.771421	&2.611696	&0.159725	&6.115740\\
+1.500000	&3.173277	&3.011686	&0.161591	&5.365475\\
+
+\end{tabular}
+\end{table*}
+
+\vspace{100}
+\textbf{5.}$y'=e^-y, y(0)=0; y(0.5)$
+\newline $y(0.5)\approx0.4854$ (con $h=0.1$)\newline $y(0.5)\approx0.4455$ (con $h=0.05$).
+\newline
+
+\textbf{6.}$y'=x^2+y^2, y(0)=1; y(0.5)$
+\newline $y(0.5)\approx2.1995$ (con $h=0.1$)
+\newline $y(0.5)\approx2.1325$ (con $h=0.05$)
+\newline
+
+\textbf{7.}$y'=(x-y)^2, y(0)=0.5; y(0.5)$
+\newline $y(0.5)\approx2.1995$ (con $h=0.1$)
+\newline $y(0.5)\approx2.1325$ (con $h=0.05$)
+\newline
+
+\textbf{8.}$y'=xy+\sqrt{y}, y(0)=1; y(0.5)$
+\newline $y(0.5)\approx1.9047   $ (con $h=0.1$)
+\newline $y(0.5)\approx1.8305  $ (con $h=0.05$)
+\newline
+
+\textbf{9.}$y'=xy^2-\(\frac{y}{x}\), y(1)=1; y(1.5)$
+\newline $y(0.5)\approx1.2194 $ (con $h=0.1$)
+\newline $y(0.5)\approx1.2695 $ (con $h=0.05$)
+\newline
+
+\textbf{10.}$y'=y-y^2, y(0)=0.5; y(0.5)$
+\newline $y(0.5)\approx0.6466 $ (con $h=0.1$)
+\newline $y(0.5)\approx0.6345 $ (con $h=0.05$)
+
+
+\end{document}
+
